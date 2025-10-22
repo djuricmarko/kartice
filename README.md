@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
+# Kartice — Expo app
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an [Expo](https://expo.dev) project.
 
 ## Get started
 
 1. Install dependencies
 
    ```bash
-   npm install
+   pnpm install # or npm install / yarn install
    ```
 
 2. Start the app
 
    ```bash
-   npx expo start
+   pnpm start
    ```
 
-In the output, you'll find options to open the app in a
+## Build for Android (installable on a phone)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+We use EAS Build to produce an APK (easy to install) or an AAB (Play Store format).
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Prerequisites (one time):
+- Log in: `pnpm eas login`
 
-## Get a fresh project
-
-When you're ready, run:
-
+Build an APK for quick install:
 ```bash
-npm run reset-project
+pnpm build:android-apk
+```
+- When the build finishes, EAS will print a URL where you can download the APK.
+- Transfer the APK to your Android phone and open it to install (you may need to allow installing from unknown sources).
+
+Build a production AAB:
+```bash
+pnpm build:android-aab
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Optional: Development build (for debugging with native modules):
+```bash
+pnpm build:android-dev
+```
 
-## Learn more
+Notes:
+- The Android package is set to `com.elirium.kartice` in `app.json`. If you want a different package, change `expo.android.package` before building.
+- You don’t need a keystore for the APK preview build; EAS will manage credentials for production if you proceed with the AAB.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Project scripts
+- `pnpm start` — start Metro bundler
+- `pnpm android` — open the development server in Android
+- `pnpm web` — run on web
+- `pnpm lint` — lint the project
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Reset template code (optional)
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+pnpm reset-project
+```

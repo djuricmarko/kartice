@@ -21,7 +21,6 @@ export default function CardsScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      // Reset form when leaving
       return () => {
         setNewName('');
         setNewImageUri(undefined);
@@ -106,12 +105,10 @@ export default function CardsScreen() {
         ListEmptyComponent={empty}
       />
 
-      {/* FAB */}
       <Pressable onPress={openAddModal} style={({ pressed }) => [styles.fab, pressed && styles.fabPressed]} android_ripple={{ color: 'rgba(255,255,255,0.2)', borderless: true }}>
         <MaterialIcons name="add" size={28} color="white" />
       </Pressable>
 
-      {/* Add Modal */}
       <Modal visible={modalVisible} transparent animationType="slide" onRequestClose={() => setModalVisible(false)}>
         <View style={styles.modalBackdrop}>
           <View style={styles.modalCard}>
@@ -148,7 +145,6 @@ export default function CardsScreen() {
         </View>
       </Modal>
 
-      {/* Fullscreen image viewer */}
       <Modal visible={!!viewerUri} transparent={false} animationType="fade" onRequestClose={() => setViewerUri(null)}>
         <View style={styles.viewerContainer}>
           <Pressable style={{ flex: 1 }} onPress={() => setViewerUri(null)}>
@@ -166,7 +162,7 @@ export default function CardsScreen() {
 }
 
 const MD_COLORS = {
-  primary: '#1E88E5', // Material Blue 600
+  primary: '#1E88E5',
   surface: '#FFFFFF',
   surfaceVariant: '#F5F5F5',
   outline: '#E0E0E0',
