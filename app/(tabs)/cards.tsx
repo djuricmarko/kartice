@@ -45,8 +45,7 @@ export default function CardsScreen() {
     const res = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.8,
-      allowsEditing: true,
-      aspect: [4, 3],
+      allowsEditing: false,
       selectionLimit: 1,
     });
     if (!res.canceled && res.assets && res.assets[0]) {
