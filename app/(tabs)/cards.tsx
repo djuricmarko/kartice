@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { FlatList, Modal, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlatList, Modal, Platform, Pressable, StyleSheet, Text, TextInput, View, Image as RNImage } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import { Image } from 'expo-image';
@@ -147,11 +147,10 @@ export default function CardsScreen() {
 
       <Modal visible={!!viewerUri} transparent={false} animationType="fade" onRequestClose={() => setViewerUri(null)}>
         <View style={styles.viewerContainer}>
-          <Pressable style={{ flex: 1 }} onPress={() => setViewerUri(null)}>
-            {viewerUri ? (
-              <Image source={{ uri: viewerUri }} style={styles.viewerImage} contentFit="contain" />
-            ) : null}
-          </Pressable>
+          {viewerUri ? (
+            <RNImage source={{ uri: viewerUri }} style={styles.viewerImage} resizeMode="contain" />
+          ) : null}
+          <Pressable style={StyleSheet.absoluteFill} onPress={() => setViewerUri(null)} />
           <Pressable onPress={() => setViewerUri(null)} style={({ pressed }) => [styles.closeBtn, pressed && { opacity: 0.9 }]} android_ripple={{ color: 'rgba(255,255,255,0.3)', borderless: true }}>
             <MaterialIcons name="close" size={24} color="#FFFFFF" />
           </Pressable>
