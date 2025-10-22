@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { FlatList, Modal, Platform, Pressable, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { FlatList, Modal, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import * as ImagePicker from 'expo-image-picker';
 import { Image } from 'expo-image';
 import { useFocusEffect } from 'expo-router';
@@ -96,7 +97,7 @@ export default function CardsScreen() {
   ), []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <FlatList
         data={cards}
         keyExtractor={(item) => item.id}
